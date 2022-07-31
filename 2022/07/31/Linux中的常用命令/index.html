@@ -1,0 +1,219 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>Linux 中的常用命令</title><meta name="description" content="Perverted degenerate"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="你渴望力量吗？
+
+
+ls文件和目录的检视操作。
+常用参数：
+
+-a：列出全部文件
+-d：仅列出目录
+-l：列出文件权限与属性等
+-S：按文件容量大小排序
+-i：查阅 inode
+--time=atime, ctime, mtime：按不同时间显示
+
+
+
+
+简名
+全名
+中文名
+含义
+
+
+
+ atime
+access time
+ 访问时间
+文件中的数据库最后被访问的时间
+
+
+ mtime
+modify time
+ 修改时间
+文件内容被修改的最后时间
+
+
+ ctime
+change time
+ 变化时间
+文件的元数据发生变化。比如权限，所有者等
+
+
+cp, rm, mv文件操作三巨头：复制、删除、移动
+cp 常用参数：
+
+-a：=-dr --preserve=all，保留所有权限、SELinux 属性、links.."><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Chatnoir Miki's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Linux 中的常用命令</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ls"><span class="toc-text">ls</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cp-rm-mv"><span class="toc-text">cp, rm, mv</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%9F%A5%E9%98%85"><span class="toc-text">文件内容查阅</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cat-x2F-tac"><span class="toc-text">cat&#x2F;tac</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#more-x2F-less"><span class="toc-text">more&#x2F;less</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#head-x2F-tail"><span class="toc-text">head&#x2F;tail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#od"><span class="toc-text">od</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#touch"><span class="toc-text">touch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6-x2F-%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90%E8%AE%BE%E5%AE%9A"><span class="toc-text">文件 &#x2F; 目录权限设定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9D%83%E9%99%90"><span class="toc-text">基本权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="toc-text">特殊权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="toc-text">添加特殊权限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E5%B1%9E%E6%80%A7"><span class="toc-text">隐藏属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%96%87%E4%BB%B6"><span class="toc-text">搜索文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%85%A8%E9%83%A8%E6%96%87%E4%BB%B6"><span class="toc-text">搜索全部文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find%EF%BC%9A%E5%9C%A8%E6%9F%90%E7%9B%AE%E5%BD%95%E4%B8%8B%E8%BF%9B%E8%A1%8C%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2"><span class="toc-text">find：在某目录下进行高级搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%90%9C%E7%B4%A2"><span class="toc-text">时间搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84%E6%90%9C%E7%B4%A2"><span class="toc-text">用户和用户组搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E6%90%9C%E7%B4%A2"><span class="toc-text">文件属性搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88"><span class="toc-text">条件组合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E5%A4%84%E7%90%86"><span class="toc-text">结果处理</span></a></li></ol></li></ol></li></ol></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/Linux"><i class="tag post-item-tag">Linux</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Linux 中的常用命令</h1><time class="has-text-grey" datetime="2022-07-31T11:24:39.000Z">2022-07-31</time><article class="mt-2 post-content"><p>你渴望力量吗？</p>
+<span id="more"></span>
+
+<h1 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h1><p>文件和目录的检视操作。</p>
+<p>常用参数：</p>
+<ul>
+<li><code>-a</code>：列出全部文件</li>
+<li><code>-d</code>：仅列出目录</li>
+<li><code>-l</code>：列出文件权限与属性等</li>
+<li><code>-S</code>：按文件容量大小排序</li>
+<li><code>-i</code>：查阅 inode</li>
+<li><code>--time=atime, ctime, mtime</code>：按不同时间显示</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>简名</th>
+<th>全名</th>
+<th>中文名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td> atime</td>
+<td>access time</td>
+<td> 访问时间</td>
+<td>文件中的数据库最后被访问的时间</td>
+</tr>
+<tr>
+<td> mtime</td>
+<td>modify time</td>
+<td> 修改时间</td>
+<td>文件内容被修改的最后时间</td>
+</tr>
+<tr>
+<td> ctime</td>
+<td>change time</td>
+<td> 变化时间</td>
+<td>文件的元数据发生变化。比如权限，所有者等</td>
+</tr>
+</tbody></table>
+<h1 id="cp-rm-mv"><a href="#cp-rm-mv" class="headerlink" title="cp, rm, mv"></a>cp, rm, mv</h1><p>文件操作三巨头：复制、删除、移动</p>
+<p>cp 常用参数：</p>
+<ul>
+<li><code>-a</code>：=<code>-dr --preserve=all</code>，保留所有权限、SELinux 属性、links、xattr 进行复制</li>
+<li><code>-i</code>：覆盖前先询问</li>
+<li><code>-p</code>：备份常用，连带文件属性（权限、用户、时间）复制过去，它的上位版是 <code>--preserve=all</code></li>
+<li><code>-r</code>：递归复制，用于复制目录</li>
+<li><code>-d</code>：复制链接（否则复制链接文件本身）</li>
+<li><code>-l/-s</code>：复制为硬链接 / 软链接</li>
+</ul>
+<h1 id="文件内容查阅"><a href="#文件内容查阅" class="headerlink" title="文件内容查阅"></a>文件内容查阅</h1><h2 id="cat-x2F-tac"><a href="#cat-x2F-tac" class="headerlink" title="cat/tac"></a>cat/tac</h2><p>正向 / 反向打印一个文件。</p>
+<p>常用参数：</p>
+<ul>
+<li><code>-n</code>：显示行号</li>
+<li><code>-A(=-veT)</code>：可视化显示特殊字符</li>
+</ul>
+<h2 id="more-x2F-less"><a href="#more-x2F-less" class="headerlink" title="more/less"></a>more/less</h2><p>more：一次一页翻动，并且可以搜索</p>
+<ul>
+<li>空格键：向下翻一页</li>
+<li> Enter：向下翻一行</li>
+<li> b：向上翻一页</li>
+<li>可以用 / 进行搜索</li>
+</ul>
+<p>less： 在 more 基础上可以使用 PgUp 和 PgDn，并且可以使用？向上搜寻</p>
+<ul>
+<li>g 或 G：前往第一行 / 最后一行</li>
+<li> n 或 N：重复 / 反向重复上一个搜寻</li>
+</ul>
+<h2 id="head-x2F-tail"><a href="#head-x2F-tail" class="headerlink" title="head/tail"></a>head/tail</h2><p>从文件头 / 尾取内容。</p>
+<p>公用参数：</p>
+<ul>
+<li><code>-n</code>：显示多少行内容<ul>
+<li>负数表示：文件最后（head）/ 文件最前（tail）的 x 行不计入，即反向选择</li>
+</ul>
+</li>
+<li><code>tail -f filename</code> 可以持续监控文件内容追加，很常用</li>
+</ul>
+<h2 id="od"><a href="#od" class="headerlink" title="od"></a>od</h2><p>二进制显示文件内容（不常用），自行参阅 man</p>
+<h1 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h1><p>修改文件访问时间 / 新建空白文件。</p>
+<p>默认使用时，会同时修改 atime 和 mtime；可以使用开关设置行为。</p>
+<h1 id="文件-x2F-目录权限设定"><a href="#文件-x2F-目录权限设定" class="headerlink" title="文件/目录权限设定"></a>文件 / 目录权限设定</h1><p>基本权限：-rwxrwxr-x</p>
+<blockquote>
+<p>目录的 w：修改文件表之权力（新增、删除、移动文件）</p>
+<p>目录的 r：查阅文件表之权力（ls、自动补全）</p>
+<p>目录的 x：进入目录之权力（cd、访问目录内文件）</p>
+</blockquote>
+<p>特殊权限：SetUID / SetGID / StickyBit</p>
+<p>隐藏属性：chattr /lsattr</p>
+<h2 id="基本权限"><a href="#基本权限" class="headerlink" title="基本权限"></a>基本权限</h2><p>改变所属群组：<code>chgrp GROUP file</code></p>
+<p>改变文件拥有者：<code>chown USER:GROUP file</code></p>
+<p>改变文件权限：</p>
+<ul>
+<li><p>八进制表示法（4 读 2 写 1 可执行）</p>
+</li>
+<li><p>字面表示法：</p>
+<ul>
+<li>u, g, o 表示三种身份，a 表示所有身份</li>
+<li> r, w, x 表示三种权限</li>
+<li> +, -, = 表示对权限的操作</li>
+<li>例如：<code>chmod u=rwx, go=rx file</code></li>
+<li>例如 2：<code>chmod u+x file</code></li>
+</ul>
+</li>
+</ul>
+<p>文件默认权限由 <code>umask</code> 设定，使用 <code>umask</code> 或 <code>umask -S</code> 来检视</p>
+<blockquote>
+<p>umask 指的是<strong>要去除</strong>的权限，从 666（文件）或 777（目录）中减去才是默认权限</p>
+</blockquote>
+<h2 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h2><p>SUID：对于<strong>可执行文件</strong>，执行此文件时执行者将在本程序中暂时获得程序 owner 的权限（owner 的 x 变为 s）</p>
+<p>SGID：对于<strong>目录或可执行文件</strong>（group 的 x 变为 s）</p>
+<ul>
+<li>目录：用户在目录下新建的文件所属群组将与该目录群组相同</li>
+<li>可执行文件：执行者在执行过程中获得该群组的支持</li>
+</ul>
+<p>SBit：对于<strong>目录</strong>（others 的 x 变为 t），群组用户或其他人<strong>具有 w, x 权限</strong>时，创建的文件和目录只有自己和 root 可以删除</p>
+<h3 id="添加特殊权限"><a href="#添加特殊权限" class="headerlink" title="添加特殊权限"></a>添加特殊权限</h3><ul>
+<li>八进制表示法：4（SUID），2（SGID），1（SBIT），放在原三位八进制前面</li>
+<li>字面表示法：u+s, g+s, o+t</li>
+</ul>
+<h2 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h2><p>使用 <code>chattr</code> 设置，<code>lsattr</code> 查看的特殊属性</p>
+<p>常用属性：</p>
+<ul>
+<li>a：文件只能追加，不能删除和修改（常用于日志）</li>
+<li>i：文件锁定，无法删除、改名、链接、写入、追加</li>
+<li> A：访问时不修改 <code>atime</code></li>
+<li>S：确保改动同步写入磁盘，关闭 sync</li>
+</ul>
+<h1 id="搜索文件"><a href="#搜索文件" class="headerlink" title="搜索文件"></a>搜索文件</h1><p>搜索可执行文件：<code>which</code></p>
+<p>搜索特定目录下文件：<code>whereis</code>（<code>whereis -l</code> 查看位置）</p>
+<h2 id="搜索全部文件"><a href="#搜索全部文件" class="headerlink" title="搜索全部文件"></a>搜索全部文件</h2><ul>
+<li>locate：依照数据库寻找文件<ul>
+<li>常用参数：<code>-c</code>（计数），<code>-l</code>（限制数量）</li>
+<li>使用 <code>updatedb</code> 更新数据库，一般是一天自动更新</li>
+</ul>
+</li>
+<li> find：根据条件全盘搜索</li>
+</ul>
+<h3 id="find：在某目录下进行高级搜索"><a href="#find：在某目录下进行高级搜索" class="headerlink" title="find：在某目录下进行高级搜索"></a>find：在某目录下进行高级搜索</h3><p><code>find [PATH] [option] [action]</code></p>
+<p>它有很多高级用法和限定条件，示例如下：</p>
+<h4 id="时间搜索"><a href="#时间搜索" class="headerlink" title="时间搜索"></a>时间搜索</h4><ul>
+<li><code>-atime, -ctime, -mtime n</code>，n 表示 <strong>n 天前</strong>的<strong>一天之内</strong></li>
+<li>可以使用 <code>+n -n</code> 表示大于等于 n 天前、小于等于 n 天内</li>
+<li><code>find /var -mtime -4</code></li>
+</ul>
+<h4 id="用户和用户组搜索"><a href="#用户和用户组搜索" class="headerlink" title="用户和用户组搜索"></a>用户和用户组搜索</h4><ul>
+<li><code>-uid n</code> 和 <code>-user name</code>：指定拥有者搜索</li>
+<li><code>-gid n</code> 和 <code>-group name</code>：指定拥有群组搜索</li>
+<li><code>-nouser</code> 和 <code>-nogroup</code>：无用户或群组（源码安装的程序、灵魂用户）</li>
+</ul>
+<h4 id="文件属性搜索"><a href="#文件属性搜索" class="headerlink" title="文件属性搜索"></a>文件属性搜索</h4><ul>
+<li><code>-name filename</code>：文件名搜索</li>
+<li><code>-size [+-]SIZE</code>：大小搜索（单位：c - 字节，k-KB）</li>
+<li><code>-type fbcdlsp</code>：类型搜索</li>
+<li><code>-perm 4755</code>：权限搜索<ul>
+<li><code>-perm -4755</code>：必须囊括全部 mode（大于等于）</li>
+<li><code>-perm /4755</code>：具有任一 mode 权限（小于等于）</li>
+</ul>
+</li>
+</ul>
+<h4 id="条件组合"><a href="#条件组合" class="headerlink" title="条件组合"></a>条件组合</h4><p>使用 <code>-and / -a</code>、<code>-or / -o</code>、<code>-not / !</code> 进行条件组合</p>
+<pre><code class="bash"># 寻找/etc目录下，大于50k小于60k的文件，并列表显示
+find /etc -size +50k -and -size -60k -exec ls -l {} \;
+# 寻找/etc目录下，大于50k且所属人不是root的文件，并列表显示
+find /etc -size +50k -and -not -user root -exec ls -l {} \;
+</code></pre>
+<h4 id="结果处理"><a href="#结果处理" class="headerlink" title="结果处理"></a>结果处理</h4><ul>
+<li><code>-exec command</code>：将查找到的文件传递给指定命令 </li>
+</ul>
+<pre><code class="bash">find /usr/bin /usr/sbin -perm /7000 -exec ls -l {} \;
+</code></pre>
+<p>exec 之后的块中使用 {} 替换变量，使用 <code>\;</code> 结束 exec 块。</p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2022/07/16/%E5%9F%BA%E4%BA%8E%E5%8F%8B%E9%93%BE%E7%9A%84%E4%B8%AD%E6%96%87%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%8F%91%E7%8E%B0/" title="基于友链的中文独立博客发现"><span class="has-text-weight-semibold">Next: 基于友链的中文独立博客发现</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/AsterisMono"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> Chatnoir Miki 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

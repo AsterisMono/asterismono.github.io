@@ -1,0 +1,235 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>React 教程速读笔记</title><meta name="description" content="Perverted degenerate"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="用一下午的时间速读了一下 React 的官方教程文档…
+
+
+JSXconst element = &amp;lt;h1&amp;gt;Hello world!&amp;lt;/h1&amp;gt;;
+
+
+JavaScript 的语法扩展
+
+使用大括号 {} 放置 JavaScript 表达式
+
+建议将内容包裹在括号中
+
+本质是表达式
+
+编译时被转换为 JavaScript 函数调用并取值
+
+结果是 JavaScript 对象 ： React 元素
+
+
+
+
+React 元素
+与 DOM 元素区分：React 元素是普通对象，它被 ReactDOM 渲染为 DOM
+ReactDOM.render(element, document.getElementByID('App'));
+
+
+React 元素不可变，就像游戏的一帧，代表某个时刻的 UI.."><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Chatnoir Miki's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">React 教程速读笔记</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX"><span class="toc-text">JSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-%E5%85%83%E7%B4%A0"><span class="toc-text">React 元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#State"><span class="toc-text">State</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-text">事件处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93"><span class="toc-text">条件渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E4%B8%8E-Key"><span class="toc-text">列表与 Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-text">表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87"><span class="toc-text">状态提升</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/React"><i class="tag post-item-tag">React</i></a><a href="/tags/%E5%89%8D%E7%AB%AF"><i class="tag post-item-tag">前端</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">React 教程速读笔记</h1><time class="has-text-grey" datetime="2021-12-07T12:09:41.000Z">2021-12-07</time><article class="mt-2 post-content"><p>用一下午的时间速读了一下 React 的官方教程文档…</p>
+<span id="more"></span>
+
+<h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><pre><code class="javascript">const element = &lt;h1&gt;Hello world!&lt;/h1&gt;;
+</code></pre>
+<ul>
+<li><p>JavaScript 的语法扩展</p>
+</li>
+<li><p>使用大括号 <code>{}</code> 放置 JavaScript 表达式</p>
+</li>
+<li><p>建议将内容包裹在括号中</p>
+</li>
+<li><p>本质是表达式</p>
+<ul>
+<li><p>编译时被转换为 JavaScript 函数调用并取值</p>
+</li>
+<li><p>结果是 JavaScript 对象 ： React 元素</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="React-元素"><a href="#React-元素" class="headerlink" title="React 元素"></a>React 元素</h2><ul>
+<li><p>与 DOM 元素区分：React 元素是普通对象，它被 ReactDOM 渲染为 DOM</p>
+<pre><code class="javascript">ReactDOM.render(element, document.getElementByID('App'));
+</code></pre>
+</li>
+<li><p>React 元素<strong>不可变</strong>，就像游戏的一帧，代表某个时刻的 UI</p>
+</li>
+<li><p>更新 React 元素：创建全新的元素，并传入 <code>ReactDOM.render()</code></p>
+<ul>
+<li>React 会自动检测需要更新的部分</li>
+</ul>
+</li>
+</ul>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><pre><code class="js">function Welcome(props){
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+const element = &lt;Welcome name="Sara" /&gt;;
+</code></pre>
+<ul>
+<li><p>组件：JavaScript 函数，或 ES6 Class</p>
+</li>
+<li><p>包括：</p>
+<ul>
+<li><p>入参 <code>props</code>（JSX 接收的属性和子组件） <strong>不可更改</strong>，由上级传递</p>
+</li>
+<li><p>状态 <code>state</code> 可变，私有，完全受控于自己（封装的） - 仅 class 组件</p>
+</li>
+</ul>
+</li>
+<li><p>组件可以进行组合嵌套（一般顶层组件是 <code>App</code> 组件）</p>
+</li>
+<li><p>命名 <code>props</code>：尽量以组件自身角度命名，不依赖调用上下文</p>
+</li>
+<li><p>生命周期：</p>
+<ul>
+<li><p>挂载（第一次被渲染到 DOM）：<code>componentDidMount()</code></p>
+</li>
+<li><p>卸载（从 DOM 中删除）：<code>componentWillUnmount()</code></p>
+</li>
+</ul>
+</li>
+<li><p>Class 可以随意添加不参与数据流的额外字段（比如计时器）</p>
+</li>
+</ul>
+<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><ul>
+<li><p>直接修改 State 不会重新渲染组件，使用 <code>setState()</code></p>
+</li>
+<li><p>在 <code>setState()</code> 中不要依赖 <code>this.state</code> 和 <code>this.prop</code>，这两者可能会异步更新</p>
+<ul>
+<li>正确实践：传入函数 (state, props) =&gt; (newState)`</li>
+</ul>
+</li>
+<li><p>State 与数据流：</p>
+<ul>
+<li><p>数据流沿组件树，通过 <code>props</code> 向下流动</p>
+</li>
+<li><p><code>state</code> 封装在某一组件中，并只能影响它下面的组件（通过 <code>props</code> 传递）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><ul>
+<li><p>事件命名：<code>camelCase</code> 而非小写</p>
+</li>
+<li><p>传入一个函数体（不带括号调用！）</p>
+</li>
+<li><p>绑定 <code>this</code>：为了在回调（<code>this.handleClick</code>）中使用 <code>this</code>，需要在 <code>constructor()</code> 中显式绑定 <code>this</code></p>
+<pre><code class="js">class Toggle extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {isToggledOn: true}
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick(){
+        this.setState(prevState =&gt; ({
+            isToggledOn: !prevState.isToggledOn
+        }));
+    }
+    render(){
+        return(
+            &lt;button onClick={this.handleClick}&gt;
+                {this.state.isToggleOn ? 'ON' : 'OFF'}
+            &lt;/button&gt;
+        );
+    }
+}
+</code></pre>
+</li>
+<li><p>或者：使用 <code>public class fields</code> 语法</p>
+<pre><code class="js">handleClick = () =&gt; {
+    console.log('this is:', this);
+}
+</code></pre>
+</li>
+<li><p>或者：使用箭头函数</p>
+<pre><code class="js">&lt;button onClick={() =&gt; {this.handleClick()}}&gt;
+    {this.state.isToggleOn ? 'ON' : 'OFF'}
+&lt;/button&gt;
+</code></pre>
+</li>
+<li><p>传递参数：待查</p>
+</li>
+</ul>
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><ul>
+<li><p>思路：把 React 元素当成一等 JavaScript 对象处理，采取元素变量、<code>if</code> 等方式</p>
+</li>
+<li><p>与运算符：<code>condition &amp;&amp; someElement</code></p>
+</li>
+<li><p>三目运算符</p>
+</li>
+</ul>
+<h2 id="列表与-Key"><a href="#列表与-Key" class="headerlink" title="列表与 Key"></a>列表与 Key</h2><ul>
+<li><p>数组可以用来渲染多个组件，比如列表：</p>
+<pre><code class="js">function Item(props) {
+  return &lt;li&gt;Item {props.id}&lt;/li&gt;;
+}
+
+function List(props) {
+  const list = props.numbers.map((number) =&gt; &lt;Item key={number.toString()} id={number} /&gt;);
+  return &lt;ul&gt;{list}&lt;/ul&gt;;
+}
+
+const numbers = [0, 1, 2, 3, 4];
+function App(props) {
+  return &lt;List numbers={numbers}/&gt;;
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById("root"));
+</code></pre>
+</li>
+<li><p>列表兄弟项目之间使用唯一的 <code>key</code>（字符串）作为区分。</p>
+</li>
+<li><p><code>key</code> 的最佳实践：在<strong>数组就近的上下文</strong>中赋值，例如，列表组件而非列表项组件</p>
+</li>
+</ul>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><ul>
+<li><p>表单和 HTML 表单的不同点：</p>
+<ul>
+<li><p>HTML 中的表单是默认双向绑定的</p>
+</li>
+<li><p>在 React 中，需要手动绑定创建 “受控组件”</p>
+</li>
+</ul>
+</li>
+<li><p>受控组件（手动双向绑定）</p>
+<pre><code class="js">class NameInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "",
+    };
+    this.onValueChange = this.onValueChange.bind(this); // 绑定 this
+  }
+
+  onValueChange(e) {
+    this.setState({
+      value: e.target.value, // Input -&gt; State
+    });
+  }
+
+  render() {
+    return (
+      &lt;input
+        type="text"
+        value={this.state.value} // State -&gt; Input
+        onChange={this.onValueChange}
+      /&gt;
+    );
+  }
+}
+</code></pre>
+</li>
+</ul>
+<h2 id="状态提升"><a href="#状态提升" class="headerlink" title="状态提升"></a>状态提升</h2><blockquote>
+<p>在 React 中，将多个组件中需要共享的 state 向上移动到它们的最近共同父组件中，便可实现共享 state。这就是所谓的 “状态提升”。</p>
+</blockquote>
+<ul>
+<li><p>提升后，原子组件的 <code>state</code> 移动到父组件的 <code>state</code> 中，子组件从父组件得到 <code>props</code></p>
+</li>
+<li><p>提升状态后，子组件无法直接修改父组件的 <code>state</code>，可以借助 “受控组件” 思路</p>
+</li>
+<li><p>子组件传入来自父组件的（绑定了 <code>this</code> 的）回调函数进行修改</p>
+</li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2022/01/12/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%9AAI-Crowdwork/" title="项目总结：AI-Crowdwork"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 项目总结：AI-Crowdwork</span></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/AsterisMono"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> Chatnoir Miki 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
